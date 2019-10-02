@@ -3,7 +3,7 @@ import {Icon} from 'antd'
 import Link from 'next/link'
 import Button from '@material-ui/core/Button'
 import {useSelector, useDispatch} from 'react-redux'
-
+import Helmet from 'react-helmet';
 import axios from 'axios'
 
 import "slick-carousel/slick/slick.css";
@@ -66,6 +66,19 @@ const Index = ()=>{
 
   return(
     <div id = 'root'>
+      <Helmet 
+                title = {'TraB'}
+                description = {'안녕하세요 TraB입니다'}
+                meta = {[{
+                    name : 'description', content : '안녕하세요 TraB입니다'
+                },{
+                    property : 'og:title', content : 'TraB 여행을 떠나요'
+                },{
+                    property : 'og:image', content : 'https://kr.object.ncloudstorage.com/trabimg/biglogo.png'
+                },{
+                    property : 'og:url', contnet : 'http://localhost:8081/'
+                }]}
+            />   
       <div id = "notice">
         <div id = "notice_content">
           {dummmyNotice.map((v,i)=>{

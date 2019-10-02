@@ -4,11 +4,11 @@ const multerS3 = require('multer-s3')
 const AWS = require('aws-sdk')
 const path = require('path')
 const connection = require('../mysqlConect')()
-
+const {awsusers} = require('../../awskeys')
 const app = express.Router()
 const s3 = new AWS.S3({
-    accessKeyId : 'AKIAS2OLEDDNGAAQPH2K',
-    secretAccessKey : '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',
+    accessKeyId : awsusers.access,
+    secretAccessKey : awsusers.secret,
     Bucket : 'trabtest'
 })
 

@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
+import Helmet from 'react-helmet'
 const masterpages = ()=>{
     const me = 'master'
     useEffect(()=>{
@@ -10,7 +11,8 @@ const masterpages = ()=>{
         }
     },[])
     return(
-        <div>   
+        <div>
+            
             <div><Link href = '/masterpages/seller'><button>판매자들보기</button></Link></div>
             <div><Link href = '/masterpages/sellerpost'><button>판매자신청보기</button></Link></div>
             <div><Link href = '/masterpages/trabpost'><button>여행계획신청보기</button></Link></div>
