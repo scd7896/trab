@@ -10,7 +10,7 @@ import TableCell from '@material-ui/core/TableCell'
 
 import OneLineSeller from '../../components/masterpages/OneLineSeller'
 
-import {seller, user} from '../../dummydatas/user'
+
 
 import {url} from '../../url'
 const sellers = ({res})=>{
@@ -19,10 +19,7 @@ const sellers = ({res})=>{
     const [dataTables, setDataTables] = useState(res)
     console.log(dataTables)
     useEffect(()=>{
-        if(user.user_rank !== '관리자'){
-            alert('당신은 관리자가 아닙니다')
-            Router.push('/')
-        }
+       
     },[])
     return(
         <div>

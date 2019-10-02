@@ -2,6 +2,8 @@
 import React, {useState,useCallback} from 'react'
 import axios from 'axios'
 import Router from 'next/router'
+
+import {url} from '../url'
 import '../css/signup.scss'
 const signup = ()=>{
     const [user_id, setUserId] = useState('')
@@ -70,7 +72,7 @@ const signup = ()=>{
             questionAnswer:user_question_answer,
             userBirthday:user_birthday
         }
-        const result = await axios.post('http://127.0.0.1:9170/api/signup', formData)
+        const result = await axios.post(`${url}/api/signup`, formData)
             .catch((err)=>{
                 console.log(err)
                 alert('이미 그아이디가 있습니다')

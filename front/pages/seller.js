@@ -6,7 +6,7 @@ import Router from 'next/router'
 
 import Editor from '../components/PostUpload'
 
-
+import {url} from '../url'
 import '../css/seller.scss'
 
 const seller = ()=>{
@@ -29,7 +29,7 @@ const seller = ()=>{
         formData.append('intro', intro.value)
         formData.append('test_content', chilText)
         formData.append('user', me.id)
-        const result = await axios.post('http://127.0.0.1:9170/api/post/sellerconfig',formData)
+        const result = await axios.post(`${url}/api/post/sellerconfig`,formData)
         if(result.status !== 200){
             alert('업로드 실패')
             return
@@ -55,7 +55,7 @@ const seller = ()=>{
         })
     }
     const checkCall = async()=>{
-        const res = await axios.get(`http://127.0.0.1:9170/api/post/sellerconfig/${me.id}`)
+        const res = await axios.get(`${url}/api/post/sellerconfig/${me.id}`)
         if(res.status !== 200){
             alert('심사중입니다 기다려주세요')
             Router.push('/')

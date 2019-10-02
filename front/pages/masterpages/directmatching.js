@@ -6,12 +6,14 @@ import TableRow from '@material-ui/core/TableRow'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 
+
+import {url} from '../../url'
 import OneLineMatching from '../../components/masterpages/OneLineMatching'
 
 const Direct = ()=>{
     const [lists, setLists] = useState();
     const callMatchingLists = async()=>{
-        const res = await axios.get('http://localhost:9170/api/master/matching/datas').catch((err)=> alert('데이터를 못가져왔습니다'))
+        const res = await axios.get(`${url}/api/master/matching/datas`).catch((err)=> alert('데이터를 못가져왔습니다'))
         setLists(res.data);
     }
     useEffect(()=>{

@@ -7,7 +7,7 @@ import withRedux from 'next-redux-wrapper'
 import {applyMiddleware, compose, createStore} from 'redux'
 import{ Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
-import axios from 'axios'
+
 import rootSaga from '../saga'
 import reducer from '../reducer'
 

@@ -9,6 +9,7 @@ import axios from 'axios'
 import "slick-carousel/slick/slick.css";
 import '../css/indexComponent.scss'
 
+import {url} from '../url'
 import IndexNewPosts from '../components/IndexNewPosts'
 import IndexNewSeller from '../components/IndexNewSeller'
 import {NOTICE_NUM_SETTING,TRAB_BEST_SETTING} from '../action/action'

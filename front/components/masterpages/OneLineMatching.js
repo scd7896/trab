@@ -4,13 +4,14 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
+import {url} from '../../url'
 const OneLineMathing = ({data})=>{
     
     const matchingData = ()=>{
         Router.push(`/reqetc/${data.id}`)
     }
     const buttonClick = async()=>{
-        const res = axios.delete(`http://localhost:9170/api/master/matching/data/${data.id}`)
+        const res = axios.delete(`${url}/api/master/matching/data/${data.id}`)
             .catch((err)=>{alert('새로고침 후 재시도 해주세요')})
         location.reload();
     }

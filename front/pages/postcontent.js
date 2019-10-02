@@ -5,6 +5,8 @@ import axios from 'axios'
 import {useSelector}from 'react-redux'
 import Router from 'next/router'
 import ReactHtmlParser from 'react-html-parser'
+
+import {url} from 'url'
 import '../css/postcontent.scss'
 
 const Contents = ({postid})=>{
@@ -13,7 +15,7 @@ const Contents = ({postid})=>{
     const {me} = useSelector(state => state.user)
 
     const configPost = async()=>{
-        const res = await axios.put(`http://localhost:9170/api/master/postconfig/${postid}`).catch((err)=>{alert('새로고침 후 재시도 해주시기 바랍니다.')})
+        const res = await axios.put(`${url}/api/master/postconfig/${postid}`).catch((err)=>{alert('새로고침 후 재시도 해주시기 바랍니다.')})
         if(res.status === 200 ){
             alert('승인됬습니다')
             Router.push('/masterpages/trabpost').then(()=> location.reload())

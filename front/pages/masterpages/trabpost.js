@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell'
 import Router from 'next/router'
 import axios from 'axios'
 
+import {url} from '../../url'
+
 import OneLineData from '../../components/masterpages/OneLineNeedConfig'
 const trabpost = ({postList})=>{
    
@@ -33,7 +35,7 @@ const trabpost = ({postList})=>{
     )
 }
 trabpost.getInitialProps = async(context)=>{
-    const res = await axios.get('http://localhost:9170/api/master/trabpost/config/need')
+    const res = await axios.get(`${url}/api/master/trabpost/config/need`)
             .catch((err)=>{
                 Router.back();
             })

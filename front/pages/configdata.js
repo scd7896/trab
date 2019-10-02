@@ -2,11 +2,12 @@ import React from 'react'
 import axios from 'axios'
 import Router from 'next/router'
 import Button from '@material-ui/core/Button'
+import {url} from '../url'
 
 const configdata = ({configid, configData})=>{
     
     const rejectPost = async()=>{
-        const res = await axios.delete(`http://127.0.0.1:9170/api/master/sellerconfig/${configid}`)
+        const res = await axios.delete(`${url}/api/master/sellerconfig/${configid}`)
 
         alert('삭제 성공했습니다')
         Router.push('/masterpages/sellerpost').then((value)=>{
@@ -16,9 +17,9 @@ const configdata = ({configid, configData})=>{
         })
     }
     const successSeller = async()=>{
-        const res = await axios.get(`http://127.0.0.1:9170/api/master/sellerconfigconfirm/${configid}`)
+        const res = await axios.get(`${url}/api/master/sellerconfigconfirm/${configid}`)
         if(res.status === 200){
-            await axios.delete(`http://127.0.0.1:9170/api/master/sellerconfig/${configid}`)
+            await axios.delete(`${url}/api/master/sellerconfig/${configid}`)
             alert('업데이트 성공')
             Router.push('/masterpages/sellerpost').then((value)=>{
             location.reload()
@@ -44,7 +45,7 @@ const configdata = ({configid, configData})=>{
     )
 }
 configdata.getInitialProps = async(context)=>{
-    const res = await axios.get(`http://127.0.0.1:9170/api/master/sellerconfig/${context.query.configid}`)
+    const res = await axios.get(`${url}/api/master/sellerconfig/${context.query.configid}`)
     return{configid : context.query.configid, configData : res.data}
 }
 export default configdata;

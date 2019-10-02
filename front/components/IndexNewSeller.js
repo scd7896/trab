@@ -4,13 +4,14 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import {SET_INDEX_SELLERS, SET_MORE_INDEX_SELLER} from '../action/action'
 import SellerCard from './SellerCard'
+import {url} from '../url'
 
 const IndexNewSeller = ()=>{
     const dispatch = useDispatch();
     const [more, setMore] = useState(true)
     const {newSellers} = useSelector(state=> state.post)    
     const callNewSellers = async()=>{
-        const sellers = await axios.get('http://localhost:9170/api/post/seller/config/true')
+        const sellers = await axios.get(`${url}/api/post/seller/config/true`)
         dispatch({
             type: SET_INDEX_SELLERS,
             data : sellers.data
@@ -20,7 +21,7 @@ const IndexNewSeller = ()=>{
     const moreSellerCall = async()=>{
         const lastSellerid = newSellers[newSellers.length-1].id
         
-        const moreSeller = await axios.get(`http://localhost:9170/api/post/seller/config/true/${lastSellerid}`)
+        const moreSeller = await axios.get(`${url}/api/post/seller/config/true/${lastSellerid}`)
         if(moreSeller.data.length === 0 ) {
             setMore(false)
             return;

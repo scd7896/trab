@@ -7,6 +7,7 @@ import {SET_INDEX_POSTS} from '../action/action'
 import SliderLeftButton from './SliderLeftButton'
 import SliderRightButton from './SliderRightButton'
 import TrabCard from './TrabCard'
+import {url} from '../url'
 const IndexNewPosts = ()=>{
     const dispatch = useDispatch();
     const {newPosts} = useSelector(state=> state.post)
@@ -21,7 +22,7 @@ const IndexNewPosts = ()=>{
       }
     
     const callNewPosts = async()=>{
-        const trabPost = await axios.get('http://localhost:9170/api/post/trabpost/config/true')
+        const trabPost = await axios.get(`${url}/api/post/trabpost/config/true`)
           dispatch({
             type: SET_INDEX_POSTS,
             data : trabPost.data

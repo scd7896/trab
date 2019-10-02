@@ -39,7 +39,7 @@ app.prepare().then(()=>{
     server.get('*',(req, res)=>{
         return handle(req,res);
     })
-    server.listen(8081,()=>{
+    server.listen(8082,()=>{
         console.log('프론트 서버는 8081')
     })
 })

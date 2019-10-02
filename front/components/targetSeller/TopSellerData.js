@@ -4,13 +4,14 @@ import axios from 'axios'
 
 
 import {SET_TARGET_SELLER_DATA} from '../../action/action'
+import {url} from '../../url'
 import '../../css/TopSellerData.scss'
 const TopSellerData = ({sellerid})=>{
     const dispatch = useDispatch();
     const {targetSellerData} = useSelector(state=>state.user)
     
     const callTargetSellerData = async()=>{
-        const res = await axios.get(`http://localhost:9170/api/master/seller/data/${sellerid}`)
+        const res = await axios.get(`${url}/api/master/seller/data/${sellerid}`)
         console.log(res.data)
         dispatch({
             type : SET_TARGET_SELLER_DATA,

@@ -1,6 +1,7 @@
 import React,{useEffect, useRef} from 'react'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
+import {url} from '../url'
 
 const EditPost = ({submitType})=>{
     let ReactQuill
@@ -36,7 +37,7 @@ const EditPost = ({submitType})=>{
                         // 이미지 가져오는 api = /api/database/image/get?image=이미지이름.jpg
                          // 태경 :받아온 res값을 콘솔에 찍는 함수입니다. 브라우저 환경에서 보시면 이대로 나올꺼에요
 
-                        const res = await axios.post('http://localhost:9170/api/post/image',formData )
+                        const res = await axios.post(`${url}/api/post/image`,formData )
                         console.log(res.data)
                         quill.setSelection(range.index+1)
                         quill.deleteText(range.index, 1)

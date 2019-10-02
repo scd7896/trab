@@ -8,6 +8,8 @@ import Router from 'next/router'
 import {useDispatch} from 'react-redux'
 import jwtDecode from 'jwt-decode'
 
+import {url} from '../url'
+
 import {SET_USER_SETTING} from '../action/action'
 
 const signin = ()=>{
@@ -16,7 +18,7 @@ const signin = ()=>{
     const dispatch = useDispatch()
     const login = async() =>{
        
-        const result = await axios.post('http://127.0.0.1:9170/api/login', {
+        const result = await axios.post(`${url}/api/login`, {
             userId : inputId,
             userPassword : inputPassword   
         })

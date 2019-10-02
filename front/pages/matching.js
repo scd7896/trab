@@ -9,6 +9,7 @@ import Router from 'next/router'
 import {useSelector, useDispatch} from 'react-redux'
 import '../css/matching.scss'
 import { MATCHING_SELLER_DATA_SET } from '../action/action'
+import {url} from '../url'
 const Matching = ({postid})=>{
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false)
@@ -23,7 +24,7 @@ const Matching = ({postid})=>{
             request_user : me.id
         } 
         
-        const res = await axios.post('http://localhost:9170/api/post/directmatching', formData).catch((err)=>{alert('새로고침 후 다시 시도해주세요')})
+        const res = await axios.post(`${url}/api/post/directmatching`, formData).catch((err)=>{alert('새로고침 후 다시 시도해주세요')})
         setOpen(true)
     }
     const submitClick = ()=>{

@@ -2,6 +2,7 @@ import React, {useState, useRef,useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import Router from 'next/router'
 import axios from 'axios'
+import {url} from '../url'
 
 import PostUpload from '../components/PostUpload'
 const sellerwrite = ()=>{
@@ -24,7 +25,7 @@ const sellerwrite = ()=>{
         formdata.append('post_title', title.value)
         formdata.append('user_id', me.id)
         formdata.append('city_id', cityId)
-        axios.post(`http://localhost:9170/api/post/trabpost`,formdata)
+        axios.post(`${url}/api/post/trabpost`,formdata)
         .then((value)=>{
             return alert('심사하겠습니다')
         }).then((value)=>{
@@ -42,7 +43,7 @@ const sellerwrite = ()=>{
         setCityId(e.target.value)
     }
     const callCity = async()=>{
-        const res = await axios.get('http://localhost:9170/api/post/city')
+        const res = await axios.get(`${url}/api/post/city`)
             if(res.status === 200){
               
                 setCity(res.data)
