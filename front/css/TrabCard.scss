@@ -1,0 +1,40 @@
+#container_card_contents{
+    display: inline-block;
+    margin-left : 30px;
+}
+#card_container{
+    cursor        : pointer;
+    width         : 250px;
+    margin-top    : 10px;
+    border-radius : 25px;
+}
+#card_head{
+    position      : relative; 
+    height        : 150px;
+    border-radius : 25px; 
+}
+#card_main_image{
+    position    : absolute;
+    max-width   : 100%; 
+    max-height  : 100%;
+    top         : 0; 
+    left        : 0;
+}
+
+#card_country_contents{
+    position : absolute; 
+    background: white;
+    top      : 8px; 
+    left     : 16px;
+}
+#card_container :hover{
+    width: 300px;
+}
+#card_contents {
+    text-align :left;
+}
+#card_contents:hover {
+    #card_head{
+        width:300px;
+    }
+}

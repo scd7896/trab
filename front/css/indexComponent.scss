@@ -1,0 +1,270 @@
+
+#notice {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border: 3px solid #73AD21;
+  } 
+#notice_content{
+    position : absolute;
+    left : 0;
+    top: 0;
+    width: 100%;
+    height: 600px;
+}
+#search {
+    position: absolute;
+    top : 65%;
+    bottom : 10;
+    left : 10%;
+    height: 25%;
+    width:60%;
+    margin-top : 10px;
+    background: gray;
+    border-radius: 40px;
+    text-align: center;
+}
+#search_icon{
+    font-size : 35px;
+    margin-left : 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 50px;
+    height: 100px;
+}
+
+#input_text{
+    font-size : 20px;
+    width: 70%;
+    height: 50px;
+    border-radius: 20px;
+    @media screen and (max-width:621px) {
+        font-size : 10px;
+    }
+}
+
+#notice_navigator{
+    position : absolute;
+    bottom : 0;
+    left : 70%;
+    font-size : 30px;
+    @media screen and (max-width:400px) {
+        font-size : 20px;
+    }
+}
+
+.notice_button{
+    background: none;
+    cursor: pointer;
+    font-size : 30px;
+    border : none;
+    @media screen and (max-width:400px) {
+        font-size : 20px;
+    }
+}
+
+#notice_image{
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@keyframes fadeIn{
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+
+
+#notice_image_none{
+    display: none;
+}
+
+#trable_selector{
+    margin-top : 65px;
+    
+}
+.select_left{
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    width : 40%;
+    margin-left : 5%;
+    height : 200px;
+    color: black;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    @media screen and (max-width:500px) {
+        display: block;
+        width : 80%;
+        margin-left:10%;
+    }
+}
+.select_left:after{
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("https://i.ytimg.com/vi/CJvW05Jv9-U/maxresdefault.jpg"); 
+    background-size : cover;
+    width: 100%;
+    height: 100%;
+    opacity : 0.4;
+    z-index: -1;
+}
+
+.select_left>h2{
+    line-height: 150px;
+}
+.select_right{
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    width : 40%;
+    margin-left : 10%;
+    height : 200px;
+    
+    border-radius: 25px;
+    
+    background-size:cover;
+    color: black;
+    @media screen and (max-width:500px) {
+        margin-top: 20px;
+        display: block;
+        width : 80%;
+        margin-left: 10%;
+    }
+}
+.select_right:after{
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("https://i.ytimg.com/vi/bp3JmaHxIfE/maxresdefault.jpg"); 
+    background-size : cover;
+    width: 100%;
+    height: 100%;
+    opacity : 0.4;
+    z-index: -1;
+}
+.select_right>h2{
+    line-height: 150px;
+    
+}
+
+#seller_notice{
+    margin-top : 50px;
+    width: 100%;
+    height: 400px;
+    text-align: center;
+
+    padding-top : 40px;
+    @media screen and (max-width:500px) {
+        height: 550px;
+    }
+}
+
+#seller_notice_content{
+    display: inline-block;
+    width: 35%;
+    
+    background: black;
+    height: 150px;
+    @media screen and (max-width:500px) {
+        display: block;
+        margin-left : 15%;
+        width: 70%;
+    }
+}
+
+#seller_notice_image{
+    display : inline-block;
+    margin-left : 10%;
+    margin-right: -5%;
+    width: 35%;
+    height: 150px;
+    background: #73AD21;
+    @media screen and (max-width:500px) {
+        display: block;
+        margin-left : 15%;
+        width: 70%;
+    }
+}
+#seller_notice_action{
+    padding-left : 30%;
+    text-align: left;
+}
+#seller_notice_action > button {
+    margin-top : 15px;
+    background-color: #01B2E9;
+    color : white;
+    font-size : 20px;
+    border : none;
+}
+
+#trab_best{
+    position: relative;
+    height : 450px;
+    
+    text-align: center;
+}
+#trab_best_action{
+    margin-top: 5%;
+    margin-left : -50%;
+    font-size : 25px;
+}
+#trab_best_action > button {
+    background-color : white;
+    border: none;
+    font-size : 25px;
+    margin-right : 15px;
+}
+
+#country_best{
+    margin-top : 100px;
+    text-align: center;
+}
+#new_sellers{
+    margin-top :  100px;
+    text-align: center;
+}

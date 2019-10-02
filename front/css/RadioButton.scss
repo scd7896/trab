@@ -1,0 +1,22 @@
+#checkbox_container{
+    display: inline-block;
+    margin-left : 40px;
+}
+
+.checked{
+    display : inline-block;
+    border : 1px solid black;
+    border-radius: 40px;
+    width : 10px;
+    height : 10px;
+    margin-right : 10px;
+    background: red;
+}
+.unchecked{
+    display : inline-block;
+    border : 1px solid black;
+    border-radius: 40px;
+    width : 10px;
+    height : 10px;
+    margin-right : 10px;
+}

@@ -1,0 +1,66 @@
+#linkButton{
+    color : blue;
+    text-decoration-line: none
+}
+#menu-button{
+    
+    @media screen and(max-width: 2000px) {
+        display : none;
+    }
+    @media screen and(max-width: 480px) {
+        display : block;
+        position: absolute;
+        margin-top : 5%;
+        margin-left : 40%;
+        background : #1B6BB0;
+    }
+}
+#header_right{
+    @media screen and (max-width:480px) {
+        display : none;
+    }
+}
+#simple-menu{
+    @media screen and(max-width: 2000px) {
+        display : none;
+    }
+    @media screen and(max-width: 480px) {
+        display : block;
+    }
+}
+#navigation {
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    margin : 0;
+    padding : 0;
+    @media screen and(max-width: 480px) {
+        display : none;
+    }
+}
+
+#navigation > a{
+    text-decoration: none;
+    margin-left: 20px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-links > li {
+    cursor: pointer;
+    margin-left : 50px;
+}
+
+#user_name{
+    @media screen and(max-width: 480px){
+        position: absolute;
+        margin-top : 5%;
+        margin-left : 60%;
+    }
+}

@@ -1,0 +1,21 @@
+#tema_button_container{
+    display : inline-block;
+    margin-left : 30px;
+}
+#checkbox{
+    display : inline-block;
+    width : 10px;
+    height : 10px;
+    border :  1px solid black;
+}
+#checkbox_checked {
+    display : inline-block;
+    width : 10px;
+    height : 10px;
+    border :  1px solid black;
+    background: red;
+}
+#tema_contens{
+    display: inline-block;
+    margin-left : 10px;
+}
