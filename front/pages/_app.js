@@ -3,6 +3,7 @@ import AppLayout from "../components/AppLayout";
 import React from 'react'
 
 import Head from 'next/head'
+import Helmet from 'react-helmet'
 import withRedux from 'next-redux-wrapper'
 import {applyMiddleware, compose, createStore} from 'redux'
 import{ Provider } from 'react-redux'
@@ -22,13 +23,33 @@ const MyApp = (props)=> {
     return (
       <Container>
         <Provider store = {store}>  
-            <Head>
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <meta charSet="utf-8" />
-              <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css" />
-              <meta name="referrer" content="origin"></meta>
-            </Head>
-
+            <Helmet 
+              title = "TraB"
+              htmlAttributes = {{lang:'ko'}}
+              meta = {[{
+                charset : "UTF-8"
+              },{
+                name : 'viewport', content :'width=device-width, initial-scale=1'
+              },{
+                'http-equiv' : 'X-UA-Compatible', content : 'IE=edge',
+              },{
+                name : 'desciption', content : 'TraB의 설명란'
+              },{
+                property : 'og:type', content : 'website',
+              },{
+                property : 'og:description', content : 'TraB의 설명란'
+              },{
+                property : 'og:title', content : "TraB"
+              },{
+                name : "referrer", content : 'origin'
+              }]}
+              link ={[{
+                rel : 'stylesheet', href : "//cdn.quilljs.com/1.2.6/quill.snow.css"
+              },{
+                
+              }]}
+            />
+            
             <AppLayout>
               <Component {...pageProps} />
             </AppLayout>
