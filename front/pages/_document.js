@@ -3,8 +3,8 @@ import Helmet from 'react-helmet'
 import Document,{Main, NextScript} from 'next/document'
 class MyDocument extends Document{
     static getInitialProps(context){
-        const page = context.render((App)=>(props)=> <App {...props} />)
-        return {...page ,helmet : Helmet.renderStatic()}
+        const page = context.renderPage((App)=>(props)=> <App {...props} />)
+        return {helmet : Helmet.renderStatic()}
     }
     render(){
         const {htmlAttributes, bodyAttributes, ...helmet} = this.props.helmet;
