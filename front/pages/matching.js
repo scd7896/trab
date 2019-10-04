@@ -39,7 +39,7 @@ const Matching = ({postid})=>{
         Router.back()
     }
     const callSellerDatas = async()=>{
-        const res = await axios.get(`http://localhost:9170/api/post/post/to/sellerdata/${postid}`).catch((err)=> alert("데이터를 못가져왔습니다"))
+        const res = await axios.get(`${url}/api/post/post/to/sellerdata/${postid}`).catch((err)=> alert("데이터를 못가져왔습니다"))
         dispatch({
             type : MATCHING_SELLER_DATA_SET,
             data : res.data

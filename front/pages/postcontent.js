@@ -6,7 +6,7 @@ import {useSelector}from 'react-redux'
 import Router from 'next/router'
 import ReactHtmlParser from 'react-html-parser'
 
-import {url} from 'url'
+import {url} from '../url'
 import '../css/postcontent.scss'
 
 const Contents = ({postid})=>{
@@ -23,7 +23,7 @@ const Contents = ({postid})=>{
 
     }
     const callPostData = async()=>{
-        const res = await axios.get(`http://localhost:9170/api/post/trable/${postid}`)
+        const res = await axios.get(`${url}/api/post/trable/${postid}`)
         setPostData(res.data[0]);
     }
     

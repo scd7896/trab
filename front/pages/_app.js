@@ -86,6 +86,6 @@ MyApp.getInitialProps =async({ Component, ctx }) =>{
     : {};
   // this exposes the query to the user
   pageProps.query = ctx.query;
-  return { pageProps, helmet: Helmet.renderStatic() };
+  return { pageProps};
 }
 export default withRedux(configureStore)(MyApp);

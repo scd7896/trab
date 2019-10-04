@@ -4,13 +4,14 @@ import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import {url} from '../../url'
 import axios from 'axios'
 
 import OneLineSellerConfigure from '../../components/masterpages/OneLineSellerConfigure'
 const sellerpost = ()=>{
     const [configureData, setConfigureData] = useState([])
     const callConfigData = async()=>{
-        const res = await axios.get('http://127.0.0.1:9170/api/master/sellerconfig')
+        const res = await axios.get(`${url}/api/master/sellerconfig`)
         
         if(res.status === 200){
             setConfigureData(res.data)
