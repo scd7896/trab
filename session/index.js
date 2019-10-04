@@ -17,7 +17,9 @@ app.use(cors({
 }));
 app.use('/api/post', postApi)
 app.use('/api/master', masterPageApi)
-
+app.get('/', (req,res)=>{
+    res.send('호스팅완료~')
+})
 app.post('/api/signup', (req, res)=>{
     
     const id = req.body.userId
