@@ -1,6 +1,7 @@
 import React,{useEffect, useRef} from 'react'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
+import Router from 'next/router'
 import {url} from '../url'
 
 const EditPost = ({submitType})=>{
@@ -9,8 +10,10 @@ const EditPost = ({submitType})=>{
     if(typeof window !== 'undefined'){
         ReactQuill = require('react-quill')
     }
-    
-    
+
+    const cancleContents = ()=>{
+        Router.back();
+    }
     const quillModules = {
         toolbar :{
             container : [['bold', 'italic', 'underline', 'strike'], ['image']],
@@ -83,7 +86,7 @@ const EditPost = ({submitType})=>{
                 <Button variant = "contained" color="primary"
                 onClick ={saveContents}>등록하기</Button>
                 <Button variant = "contained" color="secondary"
-                onClick ={saveContents} style = {{marginLeft : '10%'}}>취소하기</Button>    
+                onClick ={cancleContents} style = {{marginLeft : '10%'}}>취소하기</Button>    
             </div>            
       </div>
       

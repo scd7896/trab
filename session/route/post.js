@@ -88,14 +88,14 @@ app.post('/trabpost', upload.single('image'), (req,res)=>{
     const city_id = req.body.city_id
     const user_id = req.body.user_id
     const content = req.body.post_content
-    console.log(content)
+    
     const sql  = `insert into TraBCore_trablepost
     values(null, '${title}', '${profileImg}', now(), ${city_id}, null, ${user_id}, false, null, '${content}')`
-    console.log(profileImg, req.body.user_id)
+    
     
     connection.query(sql, [], (err, rows, filed)=>{
         if(err){
-            console.log(err)
+    
             res.status(501).send(err)
             return
         }
@@ -245,6 +245,36 @@ app.post('/directmatching', (req, res)=>{
             return;
         }
         res.status(200).send('업로딩 성공')
+    })
+})
+
+app.post('/addnotice', upload.single('image'), (req,res)=>{
+    const profileImg = req.file.location;
+    const noticeTitle = req.body.notice_title;
+    const noticeContents = req.body.notice_contents;
+
+    const sql = `
+        insert into TraBCore_notice values(null, '${noticeTitle}', '${noticeContents}' , '${profileImg}',now())
+    `
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러');
+            return;
+        }
+        res.status(200).send('업로딩 성공')
+    })
+})
+
+app.get('/addnotice', (req, res)=>{
+    const sql = `
+        
+    `
+    connection.query(sql, [], (err,rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러');
+            return;
+        }
+        res.status(200).send(rows)
     })
 })
 module.exports = app

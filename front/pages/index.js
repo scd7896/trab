@@ -5,7 +5,12 @@ import Button from '@material-ui/core/Button'
 import {useSelector, useDispatch} from 'react-redux'
 import Helmet from 'react-helmet';
 import axios from 'axios'
-
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import "slick-carousel/slick/slick.css";
 import '../css/indexComponent.scss'
 
@@ -22,7 +27,13 @@ const Index = ()=>{
   /* Todo : 공지사항 리스트를 가져와서 화면에 뿌려줄것 */
   const dispatch = useDispatch()
   const {noticeNum, trabBest} = useSelector(state=> state.post)
-  
+  const [keywordOpen , setKeywordOpen] = useState(false)
+  const searchKeyword = ()=>{
+    setKeywordOpen(!keywordOpen);
+  }
+  const handleSearchClose = ()=>{
+    setKeywordOpen(false)
+  }
   
   const left = "<"
   const right = ">"
@@ -93,6 +104,32 @@ const Index = ()=>{
             {noticeNum+1}/{dummmyNotice.length}
           <button className = "notice_button" onClick = {rightClick}>{right}</button>
         </div>
+        <div id = "search" onClick = {searchKeyword} ></div>
+        <Dialog open = {keywordOpen} onClose = {handleSearchClose}>
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To subscribe to this website, please enter your email address here. We will send updates
+              occasionally.
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleSearchClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleSearchClose} color="primary">
+              Subscribe
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
       <div id = "trable_selector">
           <Link href = {{pathname : "/trablepages", query :{where : 'korea'}}} as = '/trablepages/korea'>
