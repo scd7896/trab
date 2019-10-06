@@ -4,9 +4,10 @@ import Link from 'next/link'
 import axios from 'axios'
 import {useSelector}from 'react-redux'
 import Router from 'next/router'
-import ReactHtmlParser from 'react-html-parser'
+
 
 import {url} from '../url'
+import HtmlParser from '../components/HtmlParser'
 import '../css/postcontent.scss'
 
 const Contents = ({postid})=>{
@@ -44,8 +45,8 @@ const Contents = ({postid})=>{
                         <p>도시 : {postData.city_name}</p>
                     </div>
                 <div id = "post_content_block">
-                    <div>{ReactHtmlParser(postData.postcontent)}</div>
                     
+                    <HtmlParser data = {postData.postcontent} />
                     {postData.trable_post_configday ? 
                         <div id = "button_block">
                             <Link href = {{pathname : '/matching', query : {postid : postid}}}

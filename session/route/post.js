@@ -248,6 +248,7 @@ app.post('/directmatching', (req, res)=>{
     })
 })
 
+/* 공지사항 쓰기 */
 app.post('/addnotice', upload.single('image'), (req,res)=>{
     const profileImg = req.file.location;
     const noticeTitle = req.body.notice_title;
@@ -265,9 +266,10 @@ app.post('/addnotice', upload.single('image'), (req,res)=>{
     })
 })
 
+/* 공지사항 리스트 전부 가져오기 */
 app.get('/addnotice', (req, res)=>{
     const sql = `
-        
+        SELECT id, notice_title, notice_image, notice_createat FROM trab.TraBCore_notice order by id desc;
     `
     connection.query(sql, [], (err,rows, fileds)=>{
         if(err){
@@ -275,6 +277,39 @@ app.get('/addnotice', (req, res)=>{
             return;
         }
         res.status(200).send(rows)
+    })
+})
+
+/* 공지사항 내부 컨텐츠 내용 가져오기 */
+app.get('/notice/contents/:id', (req, res)=>{
+    const noticeId = req.params.id
+    const sql = `
+        SELECT notice_conetent
+        FROM trab.TraBCore_notice
+        where id = ${noticeId};
+    `
+    connection.query(sql, [], (err,rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return;
+        }
+        res.status(200).send(rows[0])
+    })
+})
+
+/* 마스터 페이지에서 공지사항 삭제  */
+app.delete('/notice/:id', (req, res)=>{
+    const noticeId = req.params.id
+    const sql = `
+    delete FROM trab.TraBCore_notice
+    where id = ${noticeId};
+    `
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return
+        }
+        res.status(200).send('삭제성공')
     })
 })
 module.exports = app

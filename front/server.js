@@ -16,7 +16,7 @@ app.prepare().then(()=>{
     })
     server.get('/notice/:noticeid', (req, res)=>{
         
-        return app.render(req,res,'/notice', {noticeid : req.params.noticeid, headers : req.headers})
+        return app.render(req,res,'/notice', {noticeid : req.params.noticeid})
     })
     server.get('/postcontent/:postid',(req,res)=>{
         return app.render(req,res, '/postcontent', {postid: req.params.postid})

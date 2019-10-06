@@ -1,0 +1,40 @@
+
+@media (min-width: 1920px) {
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 1919px) and (min-width: 1200px) {
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 1199px) and (min-width: 992px) {
+    .container {
+      width: 970px;
+      margin: 0 auto;
+    }
+  }
+  //nav 줄이기, 카드 줄이기
+  @media (max-width: 991px) and (min-width: 768px) {
+    .container {
+      width: 750px;
+      margin: 0 auto;
+    }
+    #header_in_img{
+      width : 360px;
+      height: 360px;
+    }
+  }
+  //모바일 환경
+  @media (max-width: 767px) {
+    .container {
+      width: 750px;
+      margin: 0 auto;
+    }
+  }
+  

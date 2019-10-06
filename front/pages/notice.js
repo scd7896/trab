@@ -1,15 +1,21 @@
 import React from 'react'
-
-const notice = ({noticeid})=>{
-    console.log(noticeid)
+import axios from 'axios'
+import HtmlParser from '../components/HtmlParser'
+import '../css/container.scss'
+import {url} from '../url'
+const notice = ({data})=>{
+    
     return(
         <div>
-            {noticeid}번째 공지사항입니다
+            <HtmlParser data = {data} />
         </div>
     )
 }
 notice.getInitialProps = async(context)=>{
-   console.log(context.query.headers);
-    return {noticeid : context.query.noticeid}
+    const id = context.query.noticeid
+    const res = await axios.get(`${url}/api/post/notice/contents/${id}`).catch((err)=>console.log(err))
+    
+    
+    return {data : res.data.notice_conetent}
 }
 export default notice;

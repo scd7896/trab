@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode'
 
 import {SET_USER_SETTING} from '../action/action'
 import '../css/header.scss'
-
+import '../css/container.scss'
 
 const AppLayout =({children})=> {
     const {me} = useSelector(state=> state.user)
@@ -31,10 +31,12 @@ const AppLayout =({children})=> {
                     <MenuList></MenuList>
                 </Col>
             </Row>
-            <Row gutter = {10} id = "contents"> 
-                <Col xs = {24} md = {12}>
-                    {children}
-                </Col>   
+            <Row gutter = {10} id = "contents">
+                <div className = "container">
+                    <Col xs = {24} md = {12}>
+                        {children}
+                    </Col>   
+                </div> 
             </Row>
             <Row >
                 <div id ='footer'>
