@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Router from 'next/router'
 import Button from '@material-ui/core/Button'
+import HtmlParser from '../components/HtmlParser'
 import {url} from '../url'
 
 const configdata = ({configid, configData})=>{
@@ -32,7 +33,7 @@ const configdata = ({configid, configData})=>{
     return(
         <div>
             {configData?
-                <div dangerouslySetInnerHTML={{__html: `${configData.contents}`}} /> : ''
+                <HtmlParser data = {configData.contents}/> : ''
             }
             <p>{configData?
                 configData.countryList : ''}</p>

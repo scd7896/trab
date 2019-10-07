@@ -26,4 +26,7 @@
     width: 100%;
     background: #404040;
     text-align: center;
+    @media screen and (max-width:344px) {
+        width : 750px;
+    }
 }

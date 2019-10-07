@@ -19,10 +19,6 @@ import IndexNewPosts from '../components/IndexNewPosts'
 import IndexNewSeller from '../components/IndexNewSeller'
 import {NOTICE_NUM_SETTING,TRAB_BEST_SETTING} from '../action/action'
 
-
-
-
-import { dummmyNotice,dummyTrabBest, dummyCountrys}from'../dummydatas/post'
 const Index = ({noticeData})=>{
   /* Todo : 공지사항 리스트를 가져와서 화면에 뿌려줄것 */
   const dispatch = useDispatch()
