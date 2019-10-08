@@ -312,5 +312,77 @@ app.delete('/notice/:id', (req, res)=>{
         res.status(200).send('삭제성공')
     })
 })
+ 
+/* 국가 추가 api */
+app.post('/country', upload.single('image'),(req, res)=>{
+    const profileImg = req.file.location;
+    const sql = `insert into TraBCore_country values(null, '${req.body.country_name}','${profileImg}' );`
+
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return
+        }
+        res.status(200).send('추가성공')
+    })
+})
+
+/* 국가 가져오는 api */
+app.get('/countries' , (req, res)=>{
+    const sql = 'SELECT * FROM trab.TraBCore_country;'
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return;
+        }
+        res.status(200).send(rows);
+    })
+})
+
+/* 국가 삭제 api */
+app.delete('/country/:id' , (req, res)=>{
+    const sql = `
+        delete from TraBCore_country
+        where id = ${req.params.id};
+    `
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return;
+        }
+        res.status(200).send('삭제완료')
+    })
+})
+
+/* 도시정보 국가이름과 가져오기 */
+app.get('/cities', (req, res)=>{
+    const sql =`
+        SELECT city.id id, city_name, city_image, country_name
+        FROM trab.TraBCore_cityid city join TraBCore_country contry 
+        on city.country_id = contry.id;
+    `
+    connection.query(sql, [], (err,rows, fields)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return
+        }
+        res.status(200).send(rows)
+    })
+})
+
+/* 도시 추가 하기 */
+app.post('/add/city', upload.single('image'),(req, res)=>{
+    const profileImg = req.file.location;
+    const sql = `
+    insert into TraBCore_cityid values(null, '${req.body.city_name}', '${profileImg}', ${req.body.country_id})
+    `
+    connection.query(sql, [], (err, rows, fields)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return;
+        }
+        res.status(200).send('추가성공')
+    })
+})
 module.exports = app
 

@@ -21,6 +21,7 @@ const masterpages = ()=>{
             <div><Link href = '/masterpages/adlist'><button>광고확인하기</button></Link></div>
             <div><Link href = '/masterpages/directmatching'><button>매칭관리하기</button></Link></div>
             <div><Link href = '/masterpages/country'><button>국가관리하기</button></Link></div>
+            <div><Link href = '/masterpages/city'><button>도시관리하기</button></Link></div>
             <div><Link href = '/masterpages/news'><button>소식관리하기</button></Link></div>
             
         </div>

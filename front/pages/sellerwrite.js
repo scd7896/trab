@@ -72,6 +72,7 @@ const sellerwrite = ()=>{
                             })}
                         </select>
                         : ''}
+                    
                 </div>
             </div>
             <PostUpload submitType ={submitPost}></PostUpload>
