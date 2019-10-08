@@ -35,9 +35,7 @@ export default function RecipeReviewCard({data}) {
   const classes = useStyles();
   return (
     <div id = "container_card_contents">
-      <Link href = {{pathname : `postcontent`, query: {postid: data.id}}}
-        as = {`postcontent/${data.id}`}>
-        <a style = {{textDecoration : 'none'}}>
+        <a href = {`/postcontent/${data.id}`}style = {{textDecoration : 'none'}}>
           <Card className={classes.card} id ="card_container">
               <CardContent id = "card_head">
                 <img id = "card_main_image" src = {data.image} width = "100%" height = "100%"/>
@@ -51,7 +49,6 @@ export default function RecipeReviewCard({data}) {
               
           </Card>
         </a> 
-      </Link>  
     </div>
     
   );

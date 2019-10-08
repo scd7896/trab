@@ -2,13 +2,12 @@ import App,{Container} from "next/app";
 import AppLayout from "../components/AppLayout";
 import React from 'react'
 
-import Head from 'next/head'
 import Helmet from 'react-helmet'
 import withRedux from 'next-redux-wrapper'
 import {applyMiddleware, compose, createStore} from 'redux'
 import{ Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
-
+import cookies from 'next-cookies'
 import rootSaga from '../saga'
 import reducer from '../reducer'
 
@@ -86,6 +85,11 @@ MyApp.getInitialProps =async({ Component, ctx }) =>{
     : {};
   // this exposes the query to the user
   pageProps.query = ctx.query;
+  if(ctx.isServer){
+    console.log(cookies(ctx).usertoken)
+  }
+  
+  
   return { pageProps};
 }
 export default withRedux(configureStore)(MyApp);

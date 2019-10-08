@@ -32,13 +32,16 @@ const signin = ()=>{
         }
         
         sessionStorage.setItem('usertoken', result.data)
+        document.cookie = `usertoken = ${result.data};`
         const decode = jwtDecode(result.data)
         dispatch({
             type:SET_USER_SETTING,
             data : decode
         })
-        alert('로그인성공!')
-        Router.push('/')
+        
+        Router.push('/').then((value)=>{
+            location.reload();
+        })
 }
     const changeId = (e)=>{
         setInputId(e.target.value)

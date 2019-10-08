@@ -163,3 +163,6 @@ Index.getInitialProps = async(context)=>{
   return {noticeData : res.data} 
 }
 export default Index;
+
+
+
