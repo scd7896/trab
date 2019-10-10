@@ -2,9 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import Button from '@material-ui/core/Button'
+import axios from 'axios'
 
+import {url} from '../../url'
 
-const OneLineSeller = ({data})=>{
+const OneLineSeller = ({data, onReload})=>{
     const bestSwitch =()=>{
         if(data.seller_best){
             //axios.put(`/${data.seller_id}/true`)
@@ -12,34 +15,34 @@ const OneLineSeller = ({data})=>{
             //axios.put(`/${data.seller_id}/false`)
         }
     }
-    const deleteSeller = ()=>{
-        //axios.delete(`/${data.seller_id}`)
-        
+    const deleteSeller = async()=>{
+        const res = await axios.delete(`${url}/api/master/seller/${data.id}`).catch((err)=> alert('삭제실패'))
+        onReload();
     }
     return(
         <TableRow id = "table_row">
             <TableCell>
-                {data.pk}
+                {data.id}
             </TableCell>
             <TableCell>
-                {data.fields.user_primary_id}
+                {data.user_name}
             </TableCell>
             <TableCell>
-                {data.fields.seller_bank_num}        
+                {data.seller_bank_num}        
             </TableCell>
             <TableCell>
-                <img src = {data.seller_image} height = "60px" width = "60px"/>
+                <img src = {data.seller_profile_image} height = "60px" width = "60px"/>
             </TableCell>
             <TableCell>
-                {data.fields.seller_best? "추천판매자" : ""}
+                {data.seller_best !==0? "추천판매자" : ""}
             </TableCell>
             <TableCell>
-                <button onClick = {bestSwitch}>{data.fields.seller_best? "추천해제" : "추천하기"}</button>
+                <button onClick = {bestSwitch}>{data.seller_best? "추천해제" : "추천하기"}</button>
             </TableCell>      
             <TableCell>
-                <button onClick = {deleteSeller}>
+                <Button onClick = {deleteSeller} variant = "contained" color = "secondary">
                     자격박탈시키기
-                </button>
+                </Button>
             </TableCell>
         </TableRow>   
     )

@@ -222,4 +222,50 @@ app.get('/matching/data/:id',(req, res)=>{
         res.status(200).send(rows[0])
     })
 })
+
+/* 판매자 전체 를 가져오는 api */
+app.get('/seller/all/data', (req, res)=>{
+    const sql = `
+        SELECT id, seller_bank_num, seller_profile_image, seller_best, seller_info,
+        (select user_name
+            from TraBCore_usertable
+            where id = user_primary_id) user_name
+        FROM trab.TraBCore_seller;
+    `
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send("디비에러");
+            return;
+        }
+        res.status(200).send(rows);
+    })
+})
+
+/* 설계자 자격 박탈 api */
+app.delete('/seller/:id', (req, res)=>{
+    const sql = `
+    update TraBCore_usertable set user_rank_id = 9000
+    where id = (select user_primary_id
+                from TraBCore_seller
+                where id = ${req.params.id});
+    `
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('삭제 불가')
+            return;
+        }
+        const sql2 = `
+            delete from TraBCore_seller
+            where id = ${req.params.id};`
+        connection.query(sql2, [] , (err,rows, fileds)=>{
+            if(err){
+                console.log(err)
+                res.status(500).sned('삭제 실패')
+                return;
+            }
+            res.status(200).send('삭제성공')
+        })
+    })
+})
 module.exports = app;

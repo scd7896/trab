@@ -13,7 +13,7 @@ const masterpages = ()=>{
     return(
         <div>
             
-            <div><Link href = '/masterpages/seller'><button>판매자들보기</button></Link></div>
+            <div><Link href = '/masterpages/sellers'><button>판매자들보기</button></Link></div>
             <div><Link href = '/masterpages/sellerpost'><button>판매자신청보기</button></Link></div>
             <div><Link href = '/masterpages/trabpost'><button>여행계획신청보기</button></Link></div>
             <div><Link href = '/masterpages/postmanage'><button>여행계획관리하기</button></Link></div>

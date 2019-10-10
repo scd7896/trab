@@ -1,8 +1,18 @@
 import React from 'react'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import Button from '@material-ui/core/Button'
+import axios from 'axios'
 
-const OneLineCity = ({data})=>{
+import {url} from '../../url'
+
+const OneLineCity = ({data, onReload})=>{
+    const deleteCity = async()=>{
+        const res = await axios.delete(`${url}/api/post/delete/city/${data.id}`).catch((err)=>alert('삭제실패'))
+        if(res.status === 200){
+            onReload();
+        }
+    }
     return(
         <TableRow>
             <TableCell>
@@ -16,6 +26,9 @@ const OneLineCity = ({data})=>{
             </TableCell>
             <TableCell>
                 <img src = {data.city_image} width = "80px" height = "80px"/>
+            </TableCell>
+            <TableCell>
+                <Button onClick ={deleteCity} variant="contained" color = "secondary">삭제</Button>
             </TableCell>
         </TableRow>
     )

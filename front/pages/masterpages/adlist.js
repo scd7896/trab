@@ -23,7 +23,7 @@ const adlist = ()=>{
                 </TableBody>
             </Table>
             <div style = {{textAlign : 'right', marginTop : '50px', marginRight : '50px'}}>
-                <Link>광고게시물 추가</Link>
+                <Link href = "/masterpages/adwrite">광고게시물 추가</Link>
             </div>
         </div>
     )

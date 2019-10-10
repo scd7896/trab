@@ -102,7 +102,7 @@ const Index = ({noticeData})=>{
             <button className = "notice_button" onClick = {rightClick}>{right}</button>
           </div>
           <div id = "search" onClick = {searchKeyword} ></div>
-          <Dialog open = {keywordOpen} onClose = {handleSearchClose}>
+          <Dialog open = {keywordOpen} onClose = {handleSearchClose} style ={{borderRadius : '30px'}}>
             <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
             <DialogContent>
               <DialogContentText>

@@ -48,6 +48,7 @@ const sellerwrite = ()=>{
               
                 setCity(res.data)
             }
+        //optgroup label = 적용해보기
     }
     useEffect(()=>{
         if(!city){

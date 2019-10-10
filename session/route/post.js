@@ -88,7 +88,6 @@ app.post('/trabpost', upload.single('image'), (req,res)=>{
     const city_id = req.body.city_id
     const user_id = req.body.user_id
     const content = req.body.post_content
-    
     const sql  = `insert into TraBCore_trablepost
     values(null, '${title}', '${profileImg}', now(), ${city_id}, null, ${user_id}, false, null, '${content}')`
     
@@ -382,6 +381,38 @@ app.post('/add/city', upload.single('image'),(req, res)=>{
             return;
         }
         res.status(200).send('추가성공')
+    })
+})
+
+/* 도시 삭제하는 api */
+app.delete('/delete/city/:id', (req, res)=>{
+    const sql = `
+        delete FROM trab.TraBCore_cityid
+        where id = ${req.params.id};
+    `
+    connection.query(sql, [], (err, rows, fiedls)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            
+            return;
+        }
+        res.status(200).send('삭제성공');
+
+    })
+})
+
+/* 광고 추가하는 api */
+app.post('/ad', upload.single('image'), (req, res)=>{
+    const sql = `
+    `
+    connection.query(sql, [], (err,rows,fileds)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('추가실패');
+            return;
+        }
+        res.status(200).send('추가성공')
+        return;
     })
 })
 module.exports = app

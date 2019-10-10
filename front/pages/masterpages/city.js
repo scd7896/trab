@@ -87,7 +87,7 @@ const city = ()=>{
                 </TableHead>
                 <TableBody>
                     {cityLists ? cityLists.map((e, i)=>{
-                        return <OneLineCity data = {e} key = {i} />
+                        return <OneLineCity data = {e} key = {i} onReload = {callCityLists} />
                     }):''}
                 </TableBody>
             </Table>

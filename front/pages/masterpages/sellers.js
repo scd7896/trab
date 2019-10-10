@@ -17,6 +17,11 @@ const sellers = ({res})=>{
     
     
     const [dataTables, setDataTables] = useState(res)
+
+    const callSellerData = async()=>{
+        const res = await axios.get(`${url}/api/master/seller/all/data`).catch((err)=>alert('데이터를 못가져왔습니다'))
+        setDataTables(res.data)
+    }
     console.log(dataTables)
     useEffect(()=>{
        
@@ -51,9 +56,10 @@ const sellers = ({res})=>{
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {dataTables.map((e,i)=>{
-                        return <OneLineSeller key = {i} data = {e} />
-                    })}
+                    {dataTables ?
+                        dataTables.map((e,i)=>{
+                        return <OneLineSeller onReload = {callSellerData} key = {i} data = {e} />
+                    }): ''}
                 </TableBody>
             </Table>
             
@@ -61,7 +67,7 @@ const sellers = ({res})=>{
     )
 }
 sellers.getInitialProps = async(context)=>{
-    const res = await axios.get(`${url}/masterapi/seller`) 
+    const res = await axios.get(`${url}/api/master/seller/all/data`) 
     return {res : res.data}
 }
 export default sellers
