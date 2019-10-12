@@ -3,13 +3,13 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
 const handle = app.getRequestHandler()
-
+const path = require('path');
 app.prepare().then(()=>{
     const server = express()
     
     server.use(express.json())
     server.use(express.urlencoded({extended: true}))
-    
+    server.use('/', express.static(path.join(__dirname, 'public')));
     
     server.get('/trablepages/:where', (req,res)=>{
         return app.render(req, res, '/trablepages',{where: req.params.where})
@@ -39,7 +39,7 @@ app.prepare().then(()=>{
     server.get('*',(req, res)=>{
         return handle(req,res);
     })
-    server.listen(8082,()=>{
-        console.log('프론트 서버는 8081')
+    server.listen(8083,()=>{
+        console.log('프론트 서버는 8083')
     })
 })

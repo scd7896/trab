@@ -1,5 +1,5 @@
 import produce from 'immer'
-import {SET_TARGET_SELLER_DATA,SET_TARGET_SELLER_POSTS,SET_INDEX_SELLERS,SET_INDEX_POSTS,COUNTRY_ADD, COUNTRY_REMOVE,ADD_TEMA_LIST, REMOVE_TEMA_LIST,FILTER_ORDERBY_SETTING,CALL_POST_FAILURE,CALL_POST_SUCCESS, CALL_POST_REQUEST,NOTICE_NUM_SETTING,TRAB_BEST_SETTING, SET_MORE_INDEX_SELLER,SET_COUNTRY_LIST} from '../action/action'
+import {SET_MODAL_LISTS,SET_TARGET_SELLER_DATA,SET_TARGET_SELLER_POSTS,SET_INDEX_SELLERS,SET_INDEX_POSTS,COUNTRY_ADD, COUNTRY_REMOVE,ADD_TEMA_LIST, REMOVE_TEMA_LIST,FILTER_ORDERBY_SETTING,CALL_POST_FAILURE,CALL_POST_SUCCESS, CALL_POST_REQUEST,NOTICE_NUM_SETTING,TRAB_BEST_SETTING, SET_MORE_INDEX_SELLER,SET_COUNTRY_LIST} from '../action/action'
 const initalState = {
     nowPosts : [],//게시글 추가시에는 nowPost :  state.nowPost.concat(action.data)
     newSellers : [],
@@ -15,7 +15,9 @@ const initalState = {
     targetSellerPosts : [], //판매자 눌렀을때 계획표 출력
     targetSellerData : {}, // 판매자 눌렀을때 정보 출력
     masterPageCountries : [],
-    masterPageCities : []
+    masterPageCities : [],
+    modalCountryLists : [],
+    modalCityLists : []
 }
 //has
 const post =(state =initalState, action)=> {
@@ -64,7 +66,10 @@ const post =(state =initalState, action)=> {
             case SET_COUNTRY_LIST :
                 draft.masterPageCountries = action.data;
                 break;
-                
+            case SET_MODAL_LISTS :
+                draft.modalCityLists = action.citys;
+                draft.modalCountryLists = action.countries;
+                break;
             case CALL_POST_REQUEST:
             case CALL_POST_SUCCESS :
             case CALL_POST_FAILURE :

@@ -6,11 +6,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import Helmet from 'react-helmet';
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import SearchDialog from '../components/SearchDialog'
 import "slick-carousel/slick/slick.css";
 import '../css/indexComponent.scss'
 import '../css/container.scss'
@@ -102,31 +98,7 @@ const Index = ({noticeData})=>{
             <button className = "notice_button" onClick = {rightClick}>{right}</button>
           </div>
           <div id = "search" onClick = {searchKeyword} ></div>
-          <Dialog open = {keywordOpen} onClose = {handleSearchClose} style ={{borderRadius : '30px'}}>
-            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                To subscribe to this website, please enter your email address here. We will send updates
-                occasionally.
-              </DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Email Address"
-                type="email"
-                fullWidth
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleSearchClose} color="primary">
-                Cancel
-              </Button>
-              <Button onClick={handleSearchClose} color="primary">
-                Subscribe
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <SearchDialog keywordOpen = {keywordOpen} handleSearchClose = {handleSearchClose}/>
         </div>
         <div id = "trable_selector">
             <Link href = {{pathname : "/trablepages", query :{where : 'korea'}}} as = '/trablepages/korea'>

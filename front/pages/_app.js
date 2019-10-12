@@ -41,8 +41,14 @@ const MyApp = (props)=> {
                 property : 'og:title', content : "TraB"
               },{
                 name : "referrer", content : 'origin'
+              },{
+                property: 'og:image', content: 'http://localhost:8083/11.ico'
               }]}
-              link ={[{
+              link ={[
+                {
+                  rel: 'shortcut icon', href: '/11.ico',
+                },
+                {
                 rel : 'stylesheet', href : "//cdn.quilljs.com/1.2.6/quill.snow.css"
               },{
                 

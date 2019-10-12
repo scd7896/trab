@@ -404,6 +404,7 @@ app.delete('/delete/city/:id', (req, res)=>{
 /* 광고 추가하는 api */
 app.post('/ad', upload.single('image'), (req, res)=>{
     const sql = `
+        insert 
     `
     connection.query(sql, [], (err,rows,fileds)=>{
         if(err){
