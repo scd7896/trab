@@ -42,7 +42,7 @@ export default function SellerCard({data}) {
             </CardContent>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" id = "card_contents">
-                    <h4>{data.title}</h4>
+                    <h4 id = "card_tatie">{data.title}</h4>
                     <p>{data.user_name}</p>
                 </Typography>
             </CardContent>
