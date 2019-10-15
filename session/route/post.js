@@ -416,5 +416,42 @@ app.post('/ad', upload.single('image'), (req, res)=>{
         return;
     })
 })
+
+/* 본인 질의 문 가져오기 */
+app.get('/question/:id' ,(req,res)=>{
+    const sql = ``
+    connection.query(sql, [], (err, rows, fileds)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return;
+        }
+        res.status(200).send(rows[0])
+    })
+})
+
+app.get('/cities/:country', (req, res)=>{
+    let sql;
+    if(req.params.country === "korea"){
+        sql = `
+            SELECT city_name cname, city_image cimage FROM trab.TraBCore_cityid
+            where country_id = (select id
+                                from TraBCore_country
+                                where country_name = "한국");
+        `
+    }else{
+        sql = `
+            SELECT country_name cname, country_image cimage FROM trab.TraBCore_country
+             where country_name != "한국";
+        `
+    }
+    
+    connection.query(sql, [], (err,rows,fileds)=>{
+        if(err){
+            res.status(500).send('디비에러');
+            return;
+        }
+        res.status(200).send(rows)
+    })
+})
 module.exports = app
 
