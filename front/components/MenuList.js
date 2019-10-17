@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Link from 'next/link'
+import Router from 'next/router'
 import {Icon} from 'antd'
 import {useSelector, useDispatch} from 'react-redux'
 
@@ -30,7 +31,9 @@ const MenuList = ()=>{
         setAnchorEl(null);
         setSaveAnchorEl(null);
     }
-    console.log(me)
+    const moveToMasterpages = ()=>{
+        Router.push('/masterpages')
+    }
     const logOut = ()=>{
         sessionStorage.removeItem('usertoken')
         dispatch({
@@ -72,8 +75,11 @@ const MenuList = ()=>{
                 {me.id? <li onClick = {logOut}>로그아웃</li> : ''}
                 <Link href = '/allpost'><li>국내/해외여행</li></Link>
                 <Link href = "/sellerlist"><li>설계자명단</li></Link>
-                {me.userRank ==='일반회원'? <Link href = "/seller"><li>판매자등록하기</li></Link> :<Link href = "/sellerwrite"><li>여행계획판매하기</li></Link>}
-                
+                {me.userRank ==='일반회원'? <Link href = "/seller"><li>판매자등록하기</li></Link> :
+                    me.userRank ==="관리자"||me.userRank ==="판매자"? 
+                    <Link href = "/sellerwrite"><li>여행계획판매하기</li></Link> 
+                        :''}
+                {me.userRank ==='관리자' ?<li onClick = {moveToMasterpages}>관리자 </li>: ''}
             </ul>
             
         </div>

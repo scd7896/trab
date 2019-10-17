@@ -6,6 +6,7 @@ const path = require('path')
 const connection = require('../mysqlConect')()
 const {awsusers} = require('../../awskeys')
 const app = express.Router()
+const bcrypt = require('bcrypt-nodejs')
 const s3 = new AWS.S3({
     accessKeyId : awsusers.access,
     secretAccessKey : awsusers.secret,
@@ -489,7 +490,11 @@ app.get('/viewad/:iskorea', (req,res)=>{
 })
 /* 본인 질의 문 가져오기 */
 app.get('/question/:id' ,(req,res)=>{
-    const sql = ``
+    const sql = `
+        SELECT user_question FROM trab.TraBCore_usertable
+        where user_id = '${req.params.id}'
+    
+    `
     connection.query(sql, [], (err, rows, fileds)=>{
         if(err){
             res.status(500).send('디비에러')
@@ -498,7 +503,42 @@ app.get('/question/:id' ,(req,res)=>{
         res.status(200).send(rows[0])
     })
 })
+app.post('/question/answer', (req, res)=>{
+    
+    const sql = `
+        SELECT user_question_answer FROM trab.TraBCore_usertable
+        where user_id = '${req.body.id}'
+    `
+    connection.query(sql, [], (err,rows, fileds)=>{
+        if(err ){
+            res.status(500).send('디비 에러')
+            return;
+        }
+        if(rows.length === 0 ){
+            res.status(401).send('그런아이디 없는데?')
+            return
+        }
+        if(rows[0].user_question_answer !== req.body.answer){
+            res.status(201).send('답이 틀렸음')
+            return
+        }
+        const password = bcrypt.hashSync('123456789a')
 
+        const sql2 = `
+            update trab.TraBCore_usertable
+            set user_password = '${password}'
+            where user_id = '${req.body.id}'
+        `
+        connection.query(sql2, [], (err, rows, fields)=>{
+            if(err){
+                console.log(err)
+                res.status(500).send('수정 실패')
+                return
+            }
+            res.status(200).send('초기화 성공')
+        })
+    })
+})
 
 
 /* 페이지의 나라나 도시의 정보를 가져와서 뷰로 뿌려주기위한 데이터 api */
