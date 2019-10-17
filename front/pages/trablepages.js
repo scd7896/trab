@@ -13,7 +13,7 @@ import SliderRightButton from '../components/SliderRightButton'
 import { SET_TRABLEPAGE_AD, SET_TRABLEPAGE_AD_ZERO } from '../action/action';
 
 const TrablePages = ({where, data, add})=>{
-
+    console.log(add)
     const dispatch = useDispatch();
     const {addInTrablePages} = useSelector(state=> state.post)
     let number = addInTrablePages;
@@ -52,7 +52,7 @@ const TrablePages = ({where, data, add})=>{
           <div id = "trablepage_adzone">
             <div id = "notice_content">
               {add.map((v,i)=>{
-                return <Link key = {i} href = {{pathname : '/adcontent', query:{noticeid:v.id}}} as ={`/notice/${v.id}`}>
+                return <Link key = {i} href = {{pathname : '/adcontent', query:{id:v.id}}} as ={`/adcontent/${v.id}`}>
                         <img id = {i=== number? "ad_trablepages" : "ad_trablepages_none"} src = {v.image} />
                     </Link>
               })}

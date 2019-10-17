@@ -39,6 +39,9 @@ app.prepare().then(()=>{
     server.get('/masterpages/adcontent/:id', (req,res)=>{
         return app.render(req,res,'/masterpages/adcontent',{id : req.params.id} )
     })
+    server.get('/adcontent/:id', (req,res)=>{
+        return app.render(req,res, '/adcontent', {id : req.params.id})
+    })
     server.get('*',(req, res)=>{
         return handle(req,res);
     })

@@ -7,7 +7,8 @@ const adcontent = ()=>{
         </div>
     )
 }
-adcontent.getInitialProps = async()=>{
+adcontent.getInitialProps = async(context)=>{
+    console.log(context.query.id)
     return{}
 }
 export default adcontent
