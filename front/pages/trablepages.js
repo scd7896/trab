@@ -13,7 +13,7 @@ import SliderRightButton from '../components/SliderRightButton'
 import { SET_TRABLEPAGE_AD, SET_TRABLEPAGE_AD_ZERO } from '../action/action';
 
 const TrablePages = ({where, data, add})=>{
-    console.log(add)
+
     const dispatch = useDispatch();
     const {addInTrablePages} = useSelector(state=> state.post)
     let number = addInTrablePages;
