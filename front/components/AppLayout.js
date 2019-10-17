@@ -23,7 +23,7 @@ const AppLayout =({children})=> {
         })
         }
        
-    })
+    },[])
     return (
         <div id = "root_layout">
             <Row id = 'headerBackground'>

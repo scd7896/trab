@@ -54,6 +54,7 @@ const sellerwrite = ()=>{
         if(!city){
             callCity();
         }
+       
         return;
     },[])
     

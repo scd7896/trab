@@ -3,4 +3,35 @@
     width:80%;
     height : 500px;
     background: black;
+    position : relative;
+}
+
+#ad_trablepages{
+    display: flex;    
+    width : 100%;
+    height : 500px;
+}
+
+#ad_trablepages_none{
+    display: none;
+}
+
+#input_text{
+    font-size : 20px;
+    width: 70%;
+    height: 50px;
+    border-radius: 20px;
+    @media screen and (max-width:621px) {
+        font-size : 10px;
+    }
+}
+
+#notice_navigator{
+    position : absolute;
+    bottom : 0;
+    left : 70%;
+    font-size : 30px;
+    @media screen and (max-width:400px) {
+        font-size : 20px;
+    }
 }

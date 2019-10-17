@@ -1,5 +1,5 @@
 import produce from 'immer'
-import {SET_MODAL_LISTS,SET_TARGET_SELLER_DATA,SET_TARGET_SELLER_POSTS,SET_INDEX_SELLERS,SET_INDEX_POSTS,COUNTRY_ADD, COUNTRY_REMOVE,ADD_TEMA_LIST, REMOVE_TEMA_LIST,FILTER_ORDERBY_SETTING,CALL_POST_FAILURE,CALL_POST_SUCCESS, CALL_POST_REQUEST,NOTICE_NUM_SETTING,TRAB_BEST_SETTING, SET_MORE_INDEX_SELLER,SET_COUNTRY_LIST} from '../action/action'
+import {SET_TRABLEPAGE_AD_ZERO,SET_TRABLEPAGE_AD,SET_MODAL_LISTS,SET_TARGET_SELLER_DATA,SET_TARGET_SELLER_POSTS,SET_INDEX_SELLERS,SET_INDEX_POSTS,COUNTRY_ADD, COUNTRY_REMOVE,ADD_TEMA_LIST, REMOVE_TEMA_LIST,FILTER_ORDERBY_SETTING,CALL_POST_FAILURE,CALL_POST_SUCCESS, CALL_POST_REQUEST,NOTICE_NUM_SETTING,TRAB_BEST_SETTING, SET_MORE_INDEX_SELLER,SET_COUNTRY_LIST} from '../action/action'
 const initalState = {
     nowPosts : [],//게시글 추가시에는 nowPost :  state.nowPost.concat(action.data)
     newSellers : [],
@@ -14,10 +14,11 @@ const initalState = {
     selectedCountry : [], //나라별 늘리기,
     targetSellerPosts : [], //판매자 눌렀을때 계획표 출력
     targetSellerData : {}, // 판매자 눌렀을때 정보 출력
-    masterPageCountries : [],
-    masterPageCities : [],
-    modalCountryLists : [],
-    modalCityLists : []
+    masterPageCountries : [], //마스터페이지에서 나라리스트
+    masterPageCities : [], //마스터페이지에서 도시리스트
+    modalCountryLists : [], //모달창에서의 나라리스트
+    modalCityLists : [],  //모달창에서의 도시리스트
+    addInTrablePages : 2 , //trablepages에서의 보여줄 광고 번호
 }
 //has
 const post =(state =initalState, action)=> {
@@ -69,6 +70,12 @@ const post =(state =initalState, action)=> {
             case SET_MODAL_LISTS :
                 draft.modalCityLists = action.citys;
                 draft.modalCountryLists = action.countries;
+                break;
+            case SET_TRABLEPAGE_AD :
+                draft.addInTrablePages++;
+                break;
+            case SET_TRABLEPAGE_AD_ZERO :
+                draft.addInTrablePages = 0;
                 break;
             case CALL_POST_REQUEST:
             case CALL_POST_SUCCESS :

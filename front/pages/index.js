@@ -18,7 +18,7 @@ import {NOTICE_NUM_SETTING,TRAB_BEST_SETTING} from '../action/action'
 const Index = ({noticeData})=>{
   /* Todo : 공지사항 리스트를 가져와서 화면에 뿌려줄것 */
   const dispatch = useDispatch()
-  const {noticeNum, trabBest} = useSelector(state=> state.post)
+  let {noticeNum, trabBest} = useSelector(state=> state.post)
   const [keywordOpen , setKeywordOpen] = useState(false)
   const searchKeyword = ()=>{
     setKeywordOpen(!keywordOpen);
@@ -42,25 +42,30 @@ const Index = ({noticeData})=>{
       type : NOTICE_NUM_SETTING,
       data : noticeNum +1
     })
+    
   }
   
   
   useEffect(()=>{
-   
+    
     
     //const sellers = await axios.get('http://localhost:9170/seller/config/true')
     
     let autoNoticeChange = setInterval(()=>{
-      if(noticeNum < noticeData.length-1){
-        dispatch({
-          type: NOTICE_NUM_SETTING,
-          data: noticeNum+1
-        })
-      }else{
+      
+      if(noticeNum === noticeData.length-1){
         dispatch({
           type: NOTICE_NUM_SETTING,
           data : 0
         })
+        noticeNum=0;
+      }else{
+        noticeNum++
+        dispatch({
+          type: NOTICE_NUM_SETTING,
+          data: noticeNum
+        })
+        
       }
     },5000)
     

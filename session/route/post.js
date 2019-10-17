@@ -386,6 +386,7 @@ app.post('/add/city', upload.single('image'),(req, res)=>{
 
 /* 도시 삭제하는 api */
 app.delete('/delete/city/:id', (req, res)=>{
+    
     const sql = `
         delete FROM trab.TraBCore_cityid
         where id = ${req.params.id};
@@ -403,8 +404,11 @@ app.delete('/delete/city/:id', (req, res)=>{
 
 /* 광고 추가하는 api */
 app.post('/ad', upload.single('image'), (req, res)=>{
+    const profileImg = req.file.location;
+    console.log(req.body.contents)
     const sql = `
-        insert 
+    insert into TraBCore_countrydata 
+    values(null, '${profileImg}', '${req.body.contents}', ${req.body.is_korea},str_to_date('${req.body.last_day}','%Y-%m-%d'));
     `
     connection.query(sql, [], (err,rows,fileds)=>{
         if(err){
@@ -417,6 +421,72 @@ app.post('/ad', upload.single('image'), (req, res)=>{
     })
 })
 
+/* 광고 리스트 전부 가져오는 api */
+app.get('/adlists', (req,res)=>{
+    const sql = `
+        SELECT id, country_data_image image, iskorea, country_date_lastday lastday
+        FROM trab.TraBCore_countrydata;
+    `
+    connection.query(sql, [], (err,rows,fileds)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('디비에러');
+            return;
+        }
+        res.status(200).send(rows)
+    })
+})
+/* 광고 삭제 api */
+app.delete('/adlists/:id', (req, res)=>{
+    const sql = `
+        delete
+        FROM trab.TraBCore_countrydata
+        where id = ${req.params.id};
+    `
+    connection.query(sql, [], (err,rows, fileds)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('삭제실패')
+            return
+        }
+        res.status(200).send('삭제성공')
+    })
+})
+
+/* 광고 내용 가져오는 api */
+app.get('/adlist/:id', (req, res)=>{
+    const sql = `
+        SELECT id, country_data_content content, country_date_lastday lastday
+        FROM trab.TraBCore_countrydata
+        where id = ${req.params.id};
+    `
+    connection.query(sql, [], (err,rows,fileds)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('디비에러')
+            return;
+        }
+        const returnValue = rows[0]
+        res.status(200).send(returnValue)
+    })
+})
+
+/* 국내와 해외에 따라서 가져오는 api */
+app.get('/viewad/:iskorea', (req,res)=>{
+    const sql = `
+        select id, country_data_image image
+        from TraBCore_countrydata
+        where iskorea = ${req.params.iskorea} and now() <= country_date_lastday;
+    `
+    connection.query(sql, [], (err,rows, fields)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('디비에러')
+            return;
+        }
+        res.status(200).send(rows)
+    })
+})
 /* 본인 질의 문 가져오기 */
 app.get('/question/:id' ,(req,res)=>{
     const sql = ``
@@ -429,6 +499,9 @@ app.get('/question/:id' ,(req,res)=>{
     })
 })
 
+
+
+/* 페이지의 나라나 도시의 정보를 가져와서 뷰로 뿌려주기위한 데이터 api */
 app.get('/cities/:country', (req, res)=>{
     let sql;
     if(req.params.country === "korea"){
