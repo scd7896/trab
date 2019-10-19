@@ -71,7 +71,7 @@ const MenuList = ()=>{
         </div>
         <div id = "navigation">
             <ul className = "nav-links">
-                {me.id?  <Link href = "/signin"><li>마이페이지</li></Link>:<Link href = "/signin"><li>로그인/회원가입</li></Link>}
+                {me.id?  <Link href = {`/mypage`}><li>마이페이지</li></Link>:<Link href = "/signin"><li>로그인/회원가입</li></Link>}
                 {me.id? <li onClick = {logOut}>로그아웃</li> : ''}
                 <Link href = '/allpost'><li>국내/해외여행</li></Link>
                 <Link href = "/sellerlist"><li>설계자명단</li></Link>

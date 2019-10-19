@@ -566,5 +566,25 @@ app.get('/cities/:country', (req, res)=>{
         res.status(200).send(rows)
     })
 })
+
+/* 유저 정보 가져오는 api */
+app.get('/mydata/:id', (req,res)=>{
+    const sql = `
+    SELECT id, user_id acount, user_tel, user_name, 
+        (select user_rank_name
+        from TraBCore_userrank
+        where id = user_rank_id) user_rank
+	FROM trab.TraBCore_usertable
+    where id = ${req.params.id};
+    `
+    connection.query(sql, [], (err, rows, fields)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('디비접속실패')
+            return;
+        }
+        res.status(200).send(rows[0])
+    })
+})
 module.exports = app
 
