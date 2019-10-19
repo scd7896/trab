@@ -586,5 +586,51 @@ app.get('/mydata/:id', (req,res)=>{
         res.status(200).send(rows[0])
     })
 })
+
+/* 패스워드 인증하는 api */
+app.post('/password/certification', (req,res)=>{
+    if(!req.body.id){
+        res.status(401).send('잘못된 접근입니다 ')
+        return
+    }
+    const sql = `
+        SELECT user_password FROM trab.TraBCore_usertable
+        where id = ${req.body.id};
+    `
+    connection.query(sql, [], (err,rows,fields)=>{
+        if(err){
+            res.status(500).send('디비에러')
+            return;
+        }
+        const test = bcrypt.compareSync(req.body.password,rows[0].user_password)
+        if(test){
+            res.status(200).send(true)
+            return;
+        }else{
+            res.status(401).send(false)
+            return;
+        }
+    })
+})
+
+app.post('/password/changing', (req,res)=>{
+    if(!req.body.id || !req.body.new_password.length === 0){
+        res.status(401).send("잘못된 접근입니다")
+        return;
+    }
+    const password = bcrypt.hashSync(req.body.new_password)
+
+    const sql = `update TraBCore_usertable
+                set user_password = '${password}'
+                where id = ${req.body.id}`
+    connection.query(sql, [] ,(err,rows,fieds)=>{
+        if(err){
+            console.log(err)
+            res.status(500).send('디비에러')
+            return
+        }
+        res.status(200).send('변경성공')
+    })
+})
 module.exports = app
 
