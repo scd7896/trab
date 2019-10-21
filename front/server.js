@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
+const prod = process.env.NODE_ENV === 'production';
 const app = next({dev})
 const handle = app.getRequestHandler()
 const path = require('path');
@@ -48,7 +49,7 @@ app.prepare().then(()=>{
     server.get('*',(req, res)=>{
         return handle(req,res);
     })
-    server.listen(8083,()=>{
+    server.listen(prod? process.env.PORT : 8083,()=>{
         console.log('프론트 서버는 8083')
     })
 })
