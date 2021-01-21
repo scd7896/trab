@@ -33,7 +33,7 @@
     "devextreme-react": "^19.1.5",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
-    "immer": "^3.2.0",
+    "immer": "^8.0.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "mysql": "^2.17.1",
